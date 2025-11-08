@@ -9,7 +9,7 @@ export default function Speakers() {
 
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <Navbar />
+    
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.headerText}>SPEAKERS</Text>
