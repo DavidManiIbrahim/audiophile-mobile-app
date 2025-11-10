@@ -27,17 +27,17 @@ export default function ProductDetailScreen() {
     {
       id: 1,
       name: 'XX99 MARK I',
-      image: require('../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg'),
+      // image: require('../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg'),
     },
     {
       id: 2,
       name: 'XX59',
-      image: require('../../assets/shared/mobile/image-xx59-headphones.jpg'),
+      // image: require('../../assets/shared/mobile/image-xx59-headphones.jpg'),
     },
     {
       id: 3,
       name: 'ZX9 SPEAKER',
-      image: require('../../assets/shared/mobile/image-zx9-speaker.jpg'),
+      // image: require('../../assets/shared/mobile/image-zx9-speaker.jpg'),
     },
   ];
 
@@ -55,11 +55,11 @@ export default function ProductDetailScreen() {
 
         {/* Product Image */}
         <View style={styles.productImageContainer}>
-          <Image
+          {/* <Image
             source={require('../../assets/product-yx1-earphones/mobile/image-product.jpg')}
             style={styles.productImage}
             resizeMode="cover"
-          />
+          /> */}
         </View>
 
         {/* Product Info */}
@@ -140,7 +140,7 @@ export default function ProductDetailScreen() {
         </View>
 
         {/* Gallery */}
-        <View style={styles.gallery}>
+        {/* <View style={styles.gallery}>
           <Image
             source={require('../../assets/product-yx1-earphones/mobile/image-gallery-1.jpg')}
             style={styles.galleryImageSmall}
@@ -156,18 +156,18 @@ export default function ProductDetailScreen() {
             style={styles.galleryImageLarge}
             resizeMode="cover"
           />
-        </View>
+        </View> */}
 
         {/* You May Also Like */}
         <View style={styles.relatedSection}>
           <Text style={styles.relatedTitle}>YOU MAY ALSO LIKE</Text>
           {relatedProducts.map((product) => (
             <View key={product.id} style={styles.relatedProduct}>
-              <Image
+              {/* <Image
                 source={product.image}
                 style={styles.relatedImage}
                 resizeMode="cover"
-              />
+              /> */}
               <Text style={styles.relatedName}>{product.name}</Text>
               <TouchableOpacity style={styles.relatedButton}>
                 <Text style={styles.relatedButtonText}>SEE PRODUCT</Text>
@@ -182,11 +182,11 @@ export default function ProductDetailScreen() {
             style={styles.categoryCard}
             onPress={() => navigation.navigate('Headphones')}
           >
-            <Image
+            {/* <Image
               source={require('../../assets/shared/desktop/image-category-thumbnail-headphones.png')}
               style={styles.categoryImage}
               resizeMode="contain"
-            />
+            /> */}
             <Text style={styles.categoryName}>HEADPHONES</Text>
             <View style={styles.shopLink}>
               <Text style={styles.shopText}>SHOP</Text>
@@ -198,11 +198,7 @@ export default function ProductDetailScreen() {
             style={styles.categoryCard}
             onPress={() => navigation.navigate('Speakers')}
           >
-            <Image
-              source={require('../../assets/shared/desktop/image-category-thumbnail-speakers.png')}
-              style={styles.categoryImage}
-              resizeMode="contain"
-            />
+
             <Text style={styles.categoryName}>SPEAKERS</Text>
             <View style={styles.shopLink}>
               <Text style={styles.shopText}>SHOP</Text>
@@ -214,11 +210,11 @@ export default function ProductDetailScreen() {
             style={styles.categoryCard}
             onPress={() => navigation.navigate('Earphones')}
           >
-            <Image
+            {/* <Image
               source={require('../../assets/shared/desktop/image-category-thumbnail-earphones.png')}
               style={styles.categoryImage}
               resizeMode="contain"
-            />
+            /> */}
             <Text style={styles.categoryName}>EARPHONES</Text>
             <View style={styles.shopLink}>
               <Text style={styles.shopText}>SHOP</Text>
@@ -241,11 +237,11 @@ export default function ProductDetailScreen() {
             products. Stop by our store to meet some of the fantastic people who
             make Audiophile the best place to buy your portable audio equipment.
           </Text>
-          <Image
+          {/* <Image
             source={require('../../assets/shared/mobile/image-best-gear.jpg')}
             style={styles.aboutImage}
             resizeMode="cover"
-          />
+          /> */}
         </View>
 
         {/* Footer */}

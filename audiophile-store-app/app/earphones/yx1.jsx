@@ -55,11 +55,11 @@ export default function ProductDetailScreen() {
 
         {/* Product Image */}
         <View style={styles.productImageContainer}>
-           <Image
+           {/* <Image
              source={require('../../assets/product-yx1-earphones/mobile/image-product.jpg')}
              style={styles.productImage}
              resizeMode="cover"
-           />
+           /> */}
         </View>
 
         {/* Product Info */}
@@ -140,7 +140,7 @@ export default function ProductDetailScreen() {
         </View>
 
         {/* Gallery */}
-        <View style={styles.gallery}>
+        {/* <View style={styles.gallery}>
           <Image
             source={require('../../assets/product-yx1-earphones/mobile/image-gallery-1.jpg')}
             style={styles.galleryImageSmall}
@@ -156,18 +156,18 @@ export default function ProductDetailScreen() {
             style={styles.galleryImageLarge}
             resizeMode="cover"
           />
-        </View>
+        </View> */}
 
         {/* You May Also Like */}
         <View style={styles.relatedSection}>
           <Text style={styles.relatedTitle}>YOU MAY ALSO LIKE</Text>
           {relatedProducts.map((product) => (
             <View key={product.id} style={styles.relatedProduct}>
-              <Image
+              {/* <Image
                 source={product.image}
                 style={styles.relatedImage}
                 resizeMode="cover"
-              />
+              /> */}
               <Text style={styles.relatedName}>{product.name}</Text>
               <TouchableOpacity style={styles.relatedButton}>
                 <Text style={styles.relatedButtonText}>SEE PRODUCT</Text>
@@ -177,7 +177,7 @@ export default function ProductDetailScreen() {
         </View>
 
         {/* Category Cards */}
-        <View style={styles.categorySection}>
+        {/* <View style={styles.categorySection}>
           <TouchableOpacity
             style={styles.categoryCard}
             onPress={() => navigation.navigate('Headphones')}
@@ -225,10 +225,10 @@ export default function ProductDetailScreen() {
               <Icon name="chevron-forward" size={16} color="#D87D4A" />
             </View>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         {/* About Section */}
-        <View style={styles.aboutSection}>
+        {/* <View style={styles.aboutSection}>
           <Text style={styles.aboutTitle}>
             BRINGING YOU THE{'\n'}
             <Text style={styles.aboutHighlight}>BEST</Text> AUDIO GEAR
@@ -246,10 +246,10 @@ export default function ProductDetailScreen() {
             style={styles.aboutImage}
             resizeMode="cover"
           />
-        </View>
+        </View> */}
 
         {/* Footer */}
-        <View style={styles.footer}>
+        {/* <View style={styles.footer}>
           <View style={styles.footerBar} />
           <Text style={styles.footerLogo}>audiophile</Text>
 
@@ -290,7 +290,7 @@ export default function ProductDetailScreen() {
               <Icon name="logo-instagram" size={24} color="#fff" />
             </TouchableOpacity>
           </View>
-        </View>
+        </View> */}
       </ScrollView>
     </SafeAreaView>
   );
