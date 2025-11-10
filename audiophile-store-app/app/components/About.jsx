@@ -12,11 +12,11 @@ export default function AboutSection() {
         headphones, earphones, speakers, and audio accessories. Visit our showroom and luxury
         demo rooms to experience the finest audio quality.
       </Text>
-      {/* <Image
-        source={require('../assets/shared/about.jpg')}
+      <Image
+        source={require('@/app/assets/man.png')}
         style={styles.aboutImage}
         resizeMode="cover"
-      /> */}
+      />
     </View>
   );
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { router } from 'expo-router';
 import { View, Text, StyleSheet } from 'react-native';
 
 export default function Footer() {
@@ -7,10 +8,20 @@ export default function Footer() {
       <Text style={styles.footerLogo}>audiophile</Text>
 
       <View style={styles.footerLinks}>
-        <Text style={styles.footerLink}>Home</Text>
-        <Text style={styles.footerLink}>Headphones</Text>
-        <Text style={styles.footerLink}>Speakers</Text>
-        <Text style={styles.footerLink}>Earphones</Text>
+        <Text style={styles.footerLink}
+          onPress={() => { router.push('/'); }}
+        >Home</Text>
+        <Text style={styles.footerLink}
+          onPress={() => { router.push('/Headphones'); }}
+        >Headphones</Text>
+        <Text style={styles.footerLink}
+          onPress={() => { router.push('/Speakers'); }}
+
+        >Speakers</Text>
+        <Text style={styles.footerLink}
+          onPress={() => { router.push('/Earphones'); }}
+
+        >Earphones</Text>
       </View>
 
       <Text style={styles.footerText}>

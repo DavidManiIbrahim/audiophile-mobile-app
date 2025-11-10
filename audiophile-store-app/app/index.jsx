@@ -13,8 +13,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import Navbar from './components/Navbar';
 import About from './components/About';
 import Footer from './components/Footer';
+import { Image } from 'react-native';
 import Category from './components/Category';
+import heroImg from './assets/headphones.png'
 
+import { Link,router } from 'expo-router';
 
 const { width } = Dimensions.get('window');
 
@@ -29,13 +32,13 @@ export default function HomeScreen() {
       <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
         {/* Hero Section */}
         <View style={styles.hero}>
-          {/*
+
           <Image
-            source={require('../../assets/home/mobile/image-header.jpg')}
+            source={heroImg}
             style={styles.heroImage}
             resizeMode="cover"
           />
-          */}
+
           <View style={styles.heroOverlay}>
             <Text style={styles.newProduct}>NEW PRODUCT</Text>
             <Text style={styles.heroTitle}>XX99 MARK II{'\n'}HEADPHONES</Text>
@@ -45,12 +48,7 @@ export default function HomeScreen() {
             </Text>
             <TouchableOpacity
               style={styles.heroButton}
-              onPress={() =>
-                navigation.navigate('ProductDetail', {
-                  productId: 'xx99mark2',
-                  category: 'headphones',
-                })
-              }
+              onPress={() => { router.push('/headphones/xx99mark2'); }}
             >
               <Text style={styles.heroButtonText}>SEE PRODUCT</Text>
             </TouchableOpacity>
@@ -64,13 +62,13 @@ export default function HomeScreen() {
         {/* ZX9 Speaker Feature - Orange Background */}
         <View style={styles.zx9Section}>
           <View style={styles.zx9Container}>
-            {/*
+
             <Image
-              source={require('../../assets/home/mobile/image-speaker-zx9.png')}
+              source={require('./assets/zx9.png')}
               style={styles.zx9Image}
               resizeMode="contain"
             />
-            */}
+
             <Text style={styles.zx9Title}>ZX9{'\n'}SPEAKER</Text>
             <Text style={styles.zx9Description}>
               Upgrade to premium speakers that are phenomenally built to deliver
@@ -78,12 +76,9 @@ export default function HomeScreen() {
             </Text>
             <TouchableOpacity
               style={styles.zx9Button}
-              onPress={() =>
-                navigation.navigate('ProductDetail', {
-                  productId: 'zx9',
-                  category: 'speakers',
-                })
-              }
+
+              onPress={() => { router.push('/earphones/yx1'); }}
+
             >
               <Text style={styles.zx9ButtonText}>SEE PRODUCT</Text>
             </TouchableOpacity>
@@ -92,23 +87,19 @@ export default function HomeScreen() {
 
         {/* ZX7 Speaker Feature - Image Background */}
         <View style={styles.zx7Section}>
-          {/*
+
           <Image
-            source={require('../../assets/home/mobile/image-speaker-zx7.jpg')}
+            source={require('./assets/zx7.jpg')}
             style={styles.zx7Image}
             resizeMode="cover"
           />
-          */}
+
           <View style={styles.zx7Content}>
             <Text style={styles.zx7Title}>ZX7 SPEAKER</Text>
             <TouchableOpacity
               style={styles.zx7Button}
-              onPress={() =>
-                navigation.navigate('ProductDetail', {
-                  productId: 'zx7',
-                  category: 'speakers',
-                })
-              }
+              onPress={() => { router.push('/earphones/yx1'); }}
+
             >
               <Text style={styles.zx7ButtonText}>SEE PRODUCT</Text>
             </TouchableOpacity>
@@ -117,23 +108,19 @@ export default function HomeScreen() {
 
         {/* YX1 Earphones Feature - Split Layout */}
         <View style={styles.yx1Section}>
-          {/*
+
           <Image
-            source={require('../../assets/home/mobile/image-earphones-yx1.jpg')}
+            source={require('./assets/yx1.jpg')}
             style={styles.yx1Image}
             resizeMode="cover"
           />
-          */}
+
           <View style={styles.yx1Content}>
             <Text style={styles.yx1Title}>YX1 EARPHONES</Text>
             <TouchableOpacity
               style={styles.yx1Button}
-              onPress={() =>
-                navigation.navigate('ProductDetail', {
-                  productId: 'yx1',
-                  category: 'earphones',
-                })
-              }
+              onPress={() => { router.push('/earphones/yx1'); }}
+
             >
               <Text style={styles.yx1ButtonText}>SEE PRODUCT</Text>
             </TouchableOpacity>
@@ -141,7 +128,7 @@ export default function HomeScreen() {
         </View>
 
         {/* About Section */}
-     <About />
+        <About />
 
         {/* Footer */}
         <Footer />

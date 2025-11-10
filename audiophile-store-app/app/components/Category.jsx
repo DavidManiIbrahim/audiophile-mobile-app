@@ -1,21 +1,25 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
+// import { Image } from 'react-native';
+// import heroImg from './assets/xx99mark1.png'
+
+
 
 export default function Categories() {
   const router = useRouter();
 
   const categories = [
     { title: 'HEADPHONES',
-      //  image: require('../assets/shared/headphones.png'),
-        path: '/headphones'
+       image: require('@/app/assets/xx99mark1.jpg'),
+        path: '/Headphones'
        },
     { title: 'SPEAKERS', 
-      // image: require('../assets/shared/speakers.png'),
-       path: '/speakers' },
+      image: require('@/app/assets/zx9.png'),
+       path: '/Speakers' },
     { title: 'EARPHONES',
-      //  image: require('../assets/shared/earphones.png'),
-        path: '/earphones' },
+       image: require('@/app/assets/yx1(1).jpg'),
+        path: '/Earphones' },
   ];
 
   return (
@@ -26,7 +30,7 @@ export default function Categories() {
           style={styles.categoryCard}
           onPress={() => router.push(cat.path)}
         >
-          {/* <Image source={cat.image} style={styles.categoryImage} resizeMode="contain" /> */}
+          <Image source={cat.image} style={styles.categoryImage} resizeMode="contain" />
           <Text style={styles.categoryTitle}>{cat.title}</Text>
           <Text style={styles.shopLink}>SHOP {'>'}</Text>
         </TouchableOpacity>

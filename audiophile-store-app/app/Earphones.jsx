@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
-import { useRouter } from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import Footer from './components/Footer';
 import About from './components/About';
 import Navbar from './components/Navbar';
+import Categories from './components/Category';
 
 export default function Earphones() {
   const router = useRouter();
@@ -21,11 +22,11 @@ export default function Earphones() {
 
       {/* YX1 Earphones */}
       <View style={styles.productSection}>
-        {/* <Image
-          source={require('../../assets/earphones/yx1.png')}
+        <Image
+          source={require('@/app/assets/yx1(1).jpg')}
           style={styles.productImage}
           resizeMode="contain"
-        /> */}
+        />
         <Text style={styles.newProduct}>NEW PRODUCT</Text>
         <Text style={styles.productTitle}>YX1 WIRELESS EARPHONES</Text>
         <Text style={styles.productDescription}>
@@ -33,43 +34,16 @@ export default function Earphones() {
           Earphones. Enjoy incredible sound even in noisy environments with its active noise
           cancellation feature.
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}
+           onPress={() => { router.push('/earphones/yx1'); }}
+        >
           <Text style={styles.buttonText}>SEE PRODUCT</Text>
+          
         </TouchableOpacity>
       </View>
 
       {/* Category Grid */}
-      <View style={styles.categories}>
-        <TouchableOpacity style={styles.categoryCard} onPress={() => router.push('/headphones')}>
-          {/* <Image
-            source={require('../../assets/shared/headphones.png')}
-            style={styles.categoryImage}
-            resizeMode="contain"
-          /> */}
-          <Text style={styles.categoryTitle}>HEADPHONES</Text>
-          <Text style={styles.shopLink}>SHOP {'>'}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.categoryCard} onPress={() => router.push('/speakers')}>
-          {/* <Image
-            source={require('../../assets/shared/speakers.png')}
-            style={styles.categoryImage}
-            resizeMode="contain"
-          /> */}
-          <Text style={styles.categoryTitle}>SPEAKERS</Text>
-          <Text style={styles.shopLink}>SHOP {'>'}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.categoryCard} onPress={() => router.push('/earphones')}>
-          {/* <Image
-            source={require('../../assets/shared/earphones.png')}
-            style={styles.categoryImage}
-            resizeMode="contain"
-          /> */}
-          <Text style={styles.categoryTitle}>EARPHONES</Text>
-          <Text style={styles.shopLink}>SHOP {'>'}</Text>
-        </TouchableOpacity>
-      </View>
+     <Categories />
 
     
       {/* About Section */}
@@ -92,6 +66,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
     paddingVertical: 40,
     alignItems: 'center',
+    color: '#fff',
   },
   headerText: {
     color: '#fff',

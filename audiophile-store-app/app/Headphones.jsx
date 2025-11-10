@@ -1,6 +1,9 @@
 import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
 import Navbar from './components/Navbar';
+import Category from './components/Category';
+import About from './components/About';
+import Footer from './components/Footer';
 
 
 const { width } = Dimensions.get('window');
@@ -10,41 +13,34 @@ const products = [
     id: 'xx99-mark-ii',
     title: 'XX99 MARK II HEADPHONES',
     description: 'The new XX99 Mark II headphones are the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.',
-    // image: require('./assets/xx99-mark-ii.png'), 
+    image: require('@/app/assets/xx99mark1.jpg'), 
   },
   {
     id: 'xx99-mark-i',
     title: 'XX99 MARK I HEADPHONES',
     description: 'As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate sound reproduction for audiophiles, mixing engineers, and music enthusiasts alike.',
-    // image: require('./assets/xx99-mark-i.png'), 
+    image: require('@/app/assets/xx99mark2.jpg'), 
   },
   {
     id: 'xx59',
     title: 'XX59 HEADPHONES',
     description: 'Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable design makes them a perfect companion at home or on the go.',
-    // image: require('./assets/xx59.png'), 
+    image: require('@/app/assets/xx59.jpg'), 
   },
 ];
 
-const categories = [
-  { id: 'headphones', title: 'HEADPHONES',
-    // image: require('./assets/category-headphones.png')
-     },
-  { id: 'speakers', title: 'SPEAKERS',
-    //  image: require('./assets/category-speakers.png')
-     },
-  { id: 'earphones', title: 'EARPHONES',
-    //  image: require('./assets/category-earphones.png')
-     },
-];
+
 
 export default function HeadphonesScreen() {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 60 }}>
-     
-     <Navbar />
-     
-      <Text style={styles.pageTitle}>HEADPHONES</Text>
+
+      <Navbar />
+
+       {/* Header */}
+           <View style={styles.header}>
+             <Text style={styles.headerText}>HEADPHONES</Text>
+           </View>
 
       {/* Product Sections */}
       {products.map((product, index) => (
@@ -59,45 +55,13 @@ export default function HeadphonesScreen() {
       ))}
 
       {/* Categories */}
-      <View style={styles.categoriesContainer}>
-        {categories.map(category => (
-          <TouchableOpacity key={category.id} style={styles.categoryCard}>
-            <Image source={category.image} style={styles.categoryImage} resizeMode="contain" />
-            <Text style={styles.categoryTitle}>{category.title}</Text>
-            <Text style={styles.categoryShop}>SHOP {'>'}</Text>
-          </TouchableOpacity>
-        ))}
-      </View>
+      <Category />
 
-      {/* Info Section */}
-      <View style={styles.infoSection}>
-        <Text style={styles.infoHeading}>BRINGING YOU THE {'\n'}<Text style={{ color: '#D87D4A' }}>BEST</Text> AUDIO GEAR</Text>
-        <Text style={styles.infoText}>
-          Located at the heart of New York City, Audiophile is the premier store for high end headphones, earphones, speakers, and audio accessories.
-          We have a large showroom and luxury demonstration room available for you to browse and experience a wide range of our products.
-          Stop by our store to meet some of the fantastic people who make Audiophile the best place to buy your portable audio equipment.
-        </Text>
-        {/* <Image
-          source={require('./assets/info-image.png')} // Replace with your actual image
-          style={styles.infoImage}
-          resizeMode="contain"
-        /> */}
-      </View>
+      {/* About */}
+      <About />
 
       {/* Footer */}
-      <View style={styles.footer}>
-        <Text style={styles.footerLogo}>audiophile</Text>
-        <View style={styles.footerLinks}>
-          <Text style={styles.footerLink}>Home</Text>
-          <Text style={styles.footerLink}>Headphones</Text>
-          <Text style={styles.footerLink}>Speakers</Text>
-          <Text style={styles.footerLink}>Earphones</Text>
-        </View>
-        <Text style={styles.footerDescription}>
-          Audiophile is your one-stop destination for premium audio products. Visit our store or demo facility to experience sound perfection.
-        </Text>
-        <Text style={styles.footerCopyright}>Copyright 2021. All Rights Reserved</Text>
-      </View>
+      <Footer />
     </ScrollView>
   );
 }
@@ -106,6 +70,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+   header: {
+    backgroundColor: '#000',
+    paddingVertical: 40,
+    alignItems: 'center',
+    color: '#fff',
+  },
+   headerText: {
+    color: '#fff',
+    fontSize: 28,
+    fontWeight: '700',
+    letterSpacing: 2,
   },
   pageTitle: {
     fontSize: 28,

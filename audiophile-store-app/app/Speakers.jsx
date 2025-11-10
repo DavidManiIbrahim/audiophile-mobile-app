@@ -2,6 +2,9 @@ import React from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+import AboutSection from './components/About';
+import Categories from './components/Category';
 
 
 export default function Speakers() {
@@ -19,11 +22,11 @@ export default function Speakers() {
 
       {/* ZX9 Speaker */}
       <View style={styles.productSection}>
-        {/* <Image
-          source={require('../../assets/speakers/zx9.png')}
+        <Image
+          source={require('@/app/assets/zx9.png')}
           style={styles.productImage}
           resizeMode="contain"
-        /> */}
+        />
         <Text style={styles.newProduct}>NEW PRODUCT</Text>
         <Text style={styles.productTitle}>ZX9 SPEAKER</Text>
         <Text style={styles.productDescription}>
@@ -38,11 +41,11 @@ export default function Speakers() {
 
       {/* ZX7 Speaker */}
       <View style={styles.productSection}>
-        {/* <Image
-          source={require('../../assets/speakers/zx7.png')}
+        <Image
+          source={require('@/app/assets/zx7(1).jpg')}
           style={styles.productImage}
           resizeMode="contain"
-        /> */}
+        />
         <Text style={styles.productTitle}>ZX7 SPEAKER</Text>
         <Text style={styles.productDescription}>
           Stream high quality sound wirelessly with minimal loss. The ZX7 bookshelf speaker uses
@@ -55,74 +58,13 @@ export default function Speakers() {
       </View>
 
       {/* Category Grid */}
-      <View style={styles.categories}>
-        <TouchableOpacity style={styles.categoryCard} onPress={() => router.push('/headphones')}>
-          {/* <Image
-            source={require('../../assets/shared/headphones.png')}
-            style={styles.categoryImage}
-            resizeMode="contain"
-          /> */}
-          <Text style={styles.categoryTitle}>HEADPHONES</Text>
-          <Text style={styles.shopLink}>SHOP {'>'}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.categoryCard} onPress={() => router.push('/speakers')}>
-          {/* <Image
-            source={require('../../assets/shared/speakers.png')}
-            style={styles.categoryImage}
-            resizeMode="contain"
-          /> */}
-          <Text style={styles.categoryTitle}>SPEAKERS</Text>
-          <Text style={styles.shopLink}>SHOP {'>'}</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.categoryCard} onPress={() => router.push('/earphones')}>
-          {/* <Image
-            source={require('../../assets/shared/earphones.png')}
-            style={styles.categoryImage}
-            resizeMode="contain"
-          /> */}
-          <Text style={styles.categoryTitle}>EARPHONES</Text>
-          <Text style={styles.shopLink}>SHOP {'>'}</Text>
-        </TouchableOpacity>
-      </View>
+     <Categories />
 
       {/* About Section */}
-      <View style={styles.aboutSection}>
-        <Text style={styles.aboutTitle}>
-          BRINGING YOU THE <Text style={{ color: '#D87D4A' }}>BEST</Text> AUDIO GEAR
-        </Text>
-        <Text style={styles.aboutText}>
-          Located at the heart of New York City, Audiophile is the premier store for high-end
-          headphones, earphones, speakers, and audio accessories. Visit our showroom and
-          luxury demonstration rooms to experience the finest audio quality.
-        </Text>
-        {/* <Image
-          source={
-            require('../../assets/shared/about.jpg')
-          }
-          style={styles.aboutImage}
-          resizeMode="cover"
-        /> */}
-      </View>
+     <AboutSection />
 
       {/* Footer */}
-      <View style={styles.footer}>
-        <Text style={styles.footerLogo}>audiophile</Text>
-        <View style={styles.footerLinks}>
-          <Text style={styles.footerLink}>Home</Text>
-          <Text style={styles.footerLink}>Headphones</Text>
-          <Text style={styles.footerLink}>Speakers</Text>
-          <Text style={styles.footerLink}>Earphones</Text>
-        </View>
-        <Text style={styles.footerText}>
-          Audiophile is your one-stop destination for premium audio products. Visit our store or
-          demo facility to experience sound perfection.
-        </Text>
-        <Text style={styles.footerCopyright}>
-          Copyright 2021. All Rights Reserved
-        </Text>
-      </View>
+ <Footer />
 
     </ScrollView>
   );
