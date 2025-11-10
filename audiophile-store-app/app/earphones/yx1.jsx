@@ -1,76 +1,298 @@
-import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
-import Navbar from '../components/Navbar';
-import Category from '../components/Category';
-import About from '../components/About';
-import Footer from '../components/Footer';
 
+import React, { useState } from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  Image,
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions,
+} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
+import Icon from 'react-native-vector-icons/Ionicons';
+import Navbar from '../components/Navbar';
 
 const { width } = Dimensions.get('window');
 
-const products = [
-  {
-    id: 'xx99-mark-ii',
-    title: 'XX99 MARK II HEADPHONES',
-    description: 'The new XX99 Mark II headphones are the pinnacle of pristine audio. It redefines your premium headphone experience by reproducing the balanced depth and precision of studio-quality sound.',
-    // image: require('./assets/xx99-mark-ii.png'), 
-  },
-  {
-    id: 'xx99-mark-i',
-    title: 'XX99 MARK I HEADPHONES',
-    description: 'As the gold standard for headphones, the classic XX99 Mark I offers detailed and accurate sound reproduction for audiophiles, mixing engineers, and music enthusiasts alike.',
-    // image: require('./assets/xx99-mark-i.png'), 
-  },
-  {
-    id: 'xx59',
-    title: 'XX59 HEADPHONES',
-    description: 'Enjoy your audio almost anywhere and customize it to your specific tastes with the XX59 headphones. The stylish yet durable design makes them a perfect companion at home or on the go.',
-    // image: require('./assets/xx59.png'), 
-  },
-];
+export default function ProductDetailScreen() {
+  const navigation = useNavigation();
+  const [quantity, setQuantity] = useState(1);
 
-const categories = [
-  { id: 'headphones', title: 'HEADPHONES',
-    // image: require('./assets/category-headphones.png')
-     },
-  { id: 'speakers', title: 'SPEAKERS',
-    //  image: require('./assets/category-speakers.png')
-     },
-  { id: 'earphones', title: 'EARPHONES',
-    //  image: require('./assets/category-earphones.png')
-     },
-];
+  const incrementQuantity = () => setQuantity((q) => q + 1);
+  const decrementQuantity = () => setQuantity((q) => Math.max(1, q - 1));
 
-export default function HeadphonesScreen() {
+  const relatedProducts = [
+    {
+      id: 1,
+      name: 'XX99 MARK I',
+      // image: require('../../assets/shared/mobile/image-xx99-mark-one-headphones.jpg'),
+    },
+    {
+      id: 2,
+      name: 'XX59',
+      // image: require('../../assets/shared/mobile/image-xx59-headphones.jpg'),
+    },
+    {
+      id: 3,
+      name: 'ZX9 SPEAKER',
+      // image: require('../../assets/shared/mobile/image-zx9-speaker.jpg'),
+    },
+  ];
+
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{ paddingBottom: 60 }}>
-     
-     <Navbar />
-     
-      <Text style={styles.pageTitle}>HEADPHONES</Text>
+    <SafeAreaView style={styles.container} edges={['top']}>
+      <Navbar />
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={false}>
+        {/* Back Button */}
+        <TouchableOpacity
+          style={styles.backButton}
+          onPress={() => navigation.goBack()}
+        >
+          <Text style={styles.backText}>Go Back</Text>
+        </TouchableOpacity>
 
-      {/* Product Sections */}
-      {products.map((product, index) => (
-        <View key={product.id} style={styles.productSection}>
-          <Image source={product.image} style={styles.productImage} resizeMode="contain" />
-          <Text style={styles.productTitle}>{product.title}</Text>
-          <Text style={styles.productDescription}>{product.description}</Text>
-          <TouchableOpacity style={styles.ctaButton}>
-            <Text style={styles.ctaButtonText}>SEE PRODUCT</Text>
+        {/* Product Image */}
+        <View style={styles.productImageContainer}>
+           <Image
+             source={require('../../assets/product-yx1-earphones/mobile/image-product.jpg')}
+             style={styles.productImage}
+             resizeMode="cover"
+           />
+        </View>
+
+        {/* Product Info */}
+        <View style={styles.productInfo}>
+          <Text style={styles.newProduct}>NEW PRODUCT</Text>
+          <Text style={styles.productName}>YX1 WIRELESS{'\n'}EARPHONES</Text>
+          <Text style={styles.productDescription}>
+            Tailor your listening experience with bespoke dynamic drivers from the
+            new YX1 Wireless Earphones. Enjoy incredible high-fidelity sound even
+            in noisy environments with its active noise cancellation feature.
+          </Text>
+          <Text style={styles.productPrice}>$ 599</Text>
+
+          {/* Quantity and Add to Cart */}
+          <View style={styles.actionRow}>
+            <View style={styles.quantityControl}>
+              <TouchableOpacity
+                onPress={decrementQuantity}
+                style={styles.quantityButton}
+              >
+                <Text style={styles.quantityButtonText}>-</Text>
+              </TouchableOpacity>
+              <Text style={styles.quantityText}>{quantity}</Text>
+              <TouchableOpacity
+                onPress={incrementQuantity}
+                style={styles.quantityButton}
+              >
+                <Text style={styles.quantityButtonText}>+</Text>
+              </TouchableOpacity>
+            </View>
+
+            <TouchableOpacity style={styles.addButton}>
+              <Text style={styles.addButtonText}>ADD TO CART</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+
+        {/* Features Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>FEATURES</Text>
+          <Text style={styles.featureText}>
+            Experience unrivalled stereo sound thanks to innovative acoustic
+            technology. With improved ergonomics designed for long listening
+            sessions, these earphones deliver comfort and style.
+          </Text>
+          <Text style={styles.featureText}>
+            A transmission delay of 2.2ms while maintaining a connection to up to
+            30m means you can enjoy high quality playback without lag. Proprietary
+            drivers ensure clear sound reproduction at all levels. Powered by
+            rechargeable batteries, enjoy 8 hours of uninterrupted listening on a
+            single charge.
+          </Text>
+        </View>
+
+        {/* In The Box Section */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>IN THE BOX</Text>
+          <View style={styles.boxItem}>
+            <Text style={styles.boxQuantity}>2x</Text>
+            <Text style={styles.boxItemName}>Earphone Unit</Text>
+          </View>
+          <View style={styles.boxItem}>
+            <Text style={styles.boxQuantity}>6x</Text>
+            <Text style={styles.boxItemName}>Multi-size Earplugs</Text>
+          </View>
+          <View style={styles.boxItem}>
+            <Text style={styles.boxQuantity}>1x</Text>
+            <Text style={styles.boxItemName}>User Manual</Text>
+          </View>
+          <View style={styles.boxItem}>
+            <Text style={styles.boxQuantity}>1x</Text>
+            <Text style={styles.boxItemName}>USB-C Charging Cable</Text>
+          </View>
+          <View style={styles.boxItem}>
+            <Text style={styles.boxQuantity}>1x</Text>
+            <Text style={styles.boxItemName}>Travel Pouch</Text>
+          </View>
+        </View>
+
+        {/* Gallery */}
+        <View style={styles.gallery}>
+          <Image
+            source={require('../../assets/product-yx1-earphones/mobile/image-gallery-1.jpg')}
+            style={styles.galleryImageSmall}
+            resizeMode="cover"
+          />
+          <Image
+            source={require('../../assets/product-yx1-earphones/mobile/image-gallery-2.jpg')}
+            style={styles.galleryImageSmall}
+            resizeMode="cover"
+          />
+          <Image
+            source={require('../../assets/product-yx1-earphones/mobile/image-gallery-3.jpg')}
+            style={styles.galleryImageLarge}
+            resizeMode="cover"
+          />
+        </View>
+
+        {/* You May Also Like */}
+        <View style={styles.relatedSection}>
+          <Text style={styles.relatedTitle}>YOU MAY ALSO LIKE</Text>
+          {relatedProducts.map((product) => (
+            <View key={product.id} style={styles.relatedProduct}>
+              <Image
+                source={product.image}
+                style={styles.relatedImage}
+                resizeMode="cover"
+              />
+              <Text style={styles.relatedName}>{product.name}</Text>
+              <TouchableOpacity style={styles.relatedButton}>
+                <Text style={styles.relatedButtonText}>SEE PRODUCT</Text>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </View>
+
+        {/* Category Cards */}
+        <View style={styles.categorySection}>
+          <TouchableOpacity
+            style={styles.categoryCard}
+            onPress={() => navigation.navigate('Headphones')}
+          >
+            <Image
+              source={require('../../assets/shared/desktop/image-category-thumbnail-headphones.png')}
+              style={styles.categoryImage}
+              resizeMode="contain"
+            />
+            <Text style={styles.categoryName}>HEADPHONES</Text>
+            <View style={styles.shopLink}>
+              <Text style={styles.shopText}>SHOP</Text>
+              <Icon name="chevron-forward" size={16} color="#D87D4A" />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.categoryCard}
+            onPress={() => navigation.navigate('Speakers')}
+          >
+            <Image
+              source={require('../../assets/shared/desktop/image-category-thumbnail-speakers.png')}
+              style={styles.categoryImage}
+              resizeMode="contain"
+            />
+            <Text style={styles.categoryName}>SPEAKERS</Text>
+            <View style={styles.shopLink}>
+              <Text style={styles.shopText}>SHOP</Text>
+              <Icon name="chevron-forward" size={16} color="#D87D4A" />
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.categoryCard}
+            onPress={() => navigation.navigate('Earphones')}
+          >
+            <Image
+              source={require('../../assets/shared/desktop/image-category-thumbnail-earphones.png')}
+              style={styles.categoryImage}
+              resizeMode="contain"
+            />
+            <Text style={styles.categoryName}>EARPHONES</Text>
+            <View style={styles.shopLink}>
+              <Text style={styles.shopText}>SHOP</Text>
+              <Icon name="chevron-forward" size={16} color="#D87D4A" />
+            </View>
           </TouchableOpacity>
         </View>
-      ))}
-bankai
-      {/* Categories */}
-     <Category />
 
-      {/* Info Section */}
-     <About />
+        {/* About Section */}
+        <View style={styles.aboutSection}>
+          <Text style={styles.aboutTitle}>
+            BRINGING YOU THE{'\n'}
+            <Text style={styles.aboutHighlight}>BEST</Text> AUDIO GEAR
+          </Text>
+          <Text style={styles.aboutDescription}>
+            Located at the heart of New York City, Audiophile is the premier
+            store for high end headphones, earphones, speakers, and audio
+            accessories. We have a large showroom and luxury demonstration room
+            available for you to browse and experience a wide range of our
+            products. Stop by our store to meet some of the fantastic people who
+            make Audiophile the best place to buy your portable audio equipment.
+          </Text>
+          <Image
+            source={require('../../assets/shared/mobile/image-best-gear.jpg')}
+            style={styles.aboutImage}
+            resizeMode="cover"
+          />
+        </View>
 
-      {/* Footer */}
-   <Footer />
+        {/* Footer */}
+        <View style={styles.footer}>
+          <View style={styles.footerBar} />
+          <Text style={styles.footerLogo}>audiophile</Text>
 
-    </ScrollView>
+          <View style={styles.footerLinks}>
+            <TouchableOpacity onPress={() => navigation.navigate('Home')}>
+              <Text style={styles.footerLink}>HOME</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Headphones')}>
+              <Text style={styles.footerLink}>HEADPHONES</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Speakers')}>
+              <Text style={styles.footerLink}>SPEAKERS</Text>
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Earphones')}>
+              <Text style={styles.footerLink}>EARPHONES</Text>
+            </TouchableOpacity>
+          </View>
+
+          <Text style={styles.footerDescription}>
+            Audiophile is an all in one stop to fulfill your audio needs. We're a
+            small team of music lovers and sound specialists who are devoted to
+            helping you get the most out of personal audio. Come and visit our
+            demo facility - we're open 7 days a week.
+          </Text>
+
+          <Text style={styles.footerCopyright}>
+            Copyright 2021. All Rights Reserved
+          </Text>
+
+          <View style={styles.socialIcons}>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Icon name="logo-facebook" size={24} color="#fff" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Icon name="logo-twitter" size={24} color="#fff" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.socialIcon}>
+              <Icon name="logo-instagram" size={24} color="#fff" />
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
@@ -79,124 +301,347 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
   },
-  pageTitle: {
-    fontSize: 28,
-    fontWeight: '700',
-    letterSpacing: 1.5,
-    marginVertical: 20,
-    textAlign: 'center',
+  scrollView: {
+    flex: 1,
   },
-  productSection: {
+
+  // Back Button
+  backButton: {
     paddingHorizontal: 24,
-    marginBottom: 40,
-    alignItems: 'center',
+    paddingVertical: 16,
+  },
+  backText: {
+    fontSize: 15,
+    lineHeight: 25,
+    color: '#000',
+    opacity: 0.5,
+  },
+
+  // Product Image
+  productImageContainer: {
+    paddingHorizontal: 24,
+    marginBottom: 32,
   },
   productImage: {
-    width: width * 0.8,
-    height: 200,
-    marginBottom: 20,
+    width: '100%',
+    height: 327,
+    borderRadius: 8,
   },
-  productTitle: {
-    fontSize: 20,
-    fontWeight: '700',
-    marginBottom: 12,
-    textAlign: 'center',
+
+  // Product Info
+  productInfo: {
+    paddingHorizontal: 24,
+    marginBottom: 88,
+  },
+  newProduct: {
+    fontSize: 14,
+    lineHeight: 19,
+    letterSpacing: 10,
+    color: '#D87D4A',
+    marginBottom: 24,
+  },
+  productName: {
+    fontSize: 28,
+    lineHeight: 38,
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 24,
   },
   productDescription: {
-    fontSize: 14,
-    textAlign: 'center',
-    color: '#7D7D7D',
-    marginBottom: 20,
-    paddingHorizontal: 12,
+    fontSize: 15,
+    lineHeight: 25,
+    color: '#000',
+    opacity: 0.5,
+    marginBottom: 24,
   },
-  ctaButton: {
-    backgroundColor: '#D87D4A',
-    paddingVertical: 12,
-    paddingHorizontal: 40,
-    borderRadius: 4,
+  productPrice: {
+    fontSize: 18,
+    lineHeight: 25,
+    letterSpacing: 1.29,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 31,
   },
-  ctaButtonText: {
-    color: '#fff',
-    fontWeight: '700',
-    fontSize: 14,
-    letterSpacing: 1,
-  },
-  categoriesContainer: {
+
+  // Quantity and Add to Cart
+  actionRow: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    gap: 16,
+  },
+  quantityControl: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#F1F1F1',
+    width: 120,
+    height: 48,
+    justifyContent: 'space-between',
+    paddingHorizontal: 16,
+  },
+  quantityButton: {
+    padding: 8,
+  },
+  quantityButtonText: {
+    fontSize: 13,
+    lineHeight: 18,
+    letterSpacing: 1,
+    color: '#000',
+    opacity: 0.25,
+    fontWeight: 'bold',
+  },
+  quantityText: {
+    fontSize: 13,
+    lineHeight: 18,
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    color: '#000',
+  },
+  addButton: {
+    flex: 1,
+    backgroundColor: '#D87D4A',
+    height: 48,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addButtonText: {
+    fontSize: 13,
+    lineHeight: 18,
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+
+  // Features Section
+  section: {
     paddingHorizontal: 24,
+    marginBottom: 88,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    lineHeight: 36,
+    letterSpacing: 0.86,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 24,
+  },
+  featureText: {
+    fontSize: 15,
+    lineHeight: 25,
+    color: '#000',
+    opacity: 0.5,
+    marginBottom: 24,
+  },
+
+  // In The Box
+  boxItem: {
+    flexDirection: 'row',
+    marginBottom: 8,
+  },
+  boxQuantity: {
+    fontSize: 15,
+    lineHeight: 25,
+    fontWeight: 'bold',
+    color: '#D87D4A',
+    width: 40,
+  },
+  boxItemName: {
+    fontSize: 15,
+    lineHeight: 25,
+    color: '#000',
+    opacity: 0.5,
+  },
+
+  // Gallery
+  gallery: {
+    paddingHorizontal: 24,
+    marginBottom: 120,
+    gap: 20,
+  },
+  galleryImageSmall: {
+    width: '100%',
+    height: 174,
+    borderRadius: 8,
+  },
+  galleryImageLarge: {
+    width: '100%',
+    height: 368,
+    borderRadius: 8,
+  },
+
+  // Related Products
+  relatedSection: {
+    paddingHorizontal: 24,
+    marginBottom: 120,
+  },
+  relatedTitle: {
+    fontSize: 24,
+    lineHeight: 36,
+    letterSpacing: 0.86,
+    fontWeight: 'bold',
+    color: '#000',
+    textAlign: 'center',
     marginBottom: 40,
+  },
+  relatedProduct: {
+    alignItems: 'center',
+    marginBottom: 56,
+  },
+  relatedImage: {
+    width: '100%',
+    height: 120,
+    borderRadius: 8,
+    marginBottom: 32,
+  },
+  relatedName: {
+    fontSize: 24,
+    lineHeight: 33,
+    letterSpacing: 1.71,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 32,
+  },
+  relatedButton: {
+    backgroundColor: '#D87D4A',
+    paddingVertical: 15,
+    paddingHorizontal: 32,
+  },
+  relatedButtonText: {
+    fontSize: 13,
+    lineHeight: 18,
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    color: '#fff',
+  },
+
+  // Category Section
+  categorySection: {
+    paddingHorizontal: 24,
+    marginBottom: 120,
+    gap: 16,
   },
   categoryCard: {
+    backgroundColor: '#F1F1F1',
+    borderRadius: 8,
+    paddingTop: 52,
+    paddingBottom: 22,
     alignItems: 'center',
-    width: width / 3 - 30,
+    position: 'relative',
   },
   categoryImage: {
-    width: 80,
-    height: 80,
-    marginBottom: 10,
+    width: 150,
+    height: 104,
+    marginTop: -90,
+    marginBottom: 16,
   },
-  categoryTitle: {
-    fontWeight: '700',
-    fontSize: 14,
-    marginBottom: 6,
+  categoryName: {
+    fontSize: 15,
+    lineHeight: 20,
+    letterSpacing: 1.07,
+    fontWeight: 'bold',
+    color: '#000',
+    marginBottom: 17,
   },
-  categoryShop: {
-    fontWeight: '700',
-    fontSize: 12,
-    color: '#7D7D7D',
+  shopLink: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
   },
-  infoSection: {
+  shopText: {
+    fontSize: 13,
+    lineHeight: 18,
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    color: '#000',
+    opacity: 0.5,
+  },
+
+  // About Section
+  aboutSection: {
     paddingHorizontal: 24,
+    marginBottom: 120,
+  },
+  aboutTitle: {
+    fontSize: 28,
+    lineHeight: 38,
+    letterSpacing: 1,
+    fontWeight: 'bold',
+    color: '#000',
+    textAlign: 'center',
+    marginBottom: 32,
+  },
+  aboutHighlight: {
+    color: '#D87D4A',
+  },
+  aboutDescription: {
+    fontSize: 15,
+    lineHeight: 25,
+    color: '#000',
+    opacity: 0.5,
+    textAlign: 'center',
     marginBottom: 40,
   },
-  infoHeading: {
-    fontSize: 24,
-    fontWeight: '700',
-    marginBottom: 20,
-  },
-  infoText: {
-    fontSize: 14,
-    color: '#7D7D7D',
-    lineHeight: 20,
-  },
-  infoImage: {
+  aboutImage: {
     width: '100%',
-    height: 200,
-    marginTop: 24,
-    borderRadius: 10,
+    height: 300,
+    borderRadius: 8,
   },
+
+  // Footer
   footer: {
-    backgroundColor: '#000',
-    paddingVertical: 40,
+    backgroundColor: '#101010',
     paddingHorizontal: 24,
-    alignItems: 'center',
+    paddingBottom: 38,
+  },
+  footerBar: {
+    height: 4,
+    width: 101,
+    backgroundColor: '#D87D4A',
+    alignSelf: 'center',
+    marginBottom: 48,
   },
   footerLogo: {
-    fontWeight: '700',
-    fontSize: 24,
+    fontSize: 25,
+    lineHeight: 25,
+    fontWeight: 'bold',
     color: '#fff',
-    marginBottom: 24,
+    textAlign: 'center',
+    marginBottom: 48,
   },
   footerLinks: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    width: '100%',
-    marginBottom: 20,
+    alignItems: 'center',
+    gap: 16,
+    marginBottom: 48,
   },
   footerLink: {
+    fontSize: 13,
+    lineHeight: 25,
+    letterSpacing: 2,
+    fontWeight: 'bold',
     color: '#fff',
-    fontWeight: '700',
-    fontSize: 14,
   },
   footerDescription: {
+    fontSize: 15,
+    lineHeight: 25,
     color: '#fff',
-    fontSize: 12,
+    opacity: 0.5,
     textAlign: 'center',
-    marginBottom: 24,
+    marginBottom: 48,
   },
   footerCopyright: {
+    fontSize: 15,
+    lineHeight: 25,
+    fontWeight: 'bold',
     color: '#fff',
-    fontSize: 10,
+    opacity: 0.5,
+    textAlign: 'center',
+    marginBottom: 48,
+  },
+  socialIcons: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    gap: 16,
+  },
+  socialIcon: {
+    padding: 8,
   },
 });
